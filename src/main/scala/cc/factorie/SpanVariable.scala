@@ -19,7 +19,7 @@ package cc.factorie
 import scala.collection.mutable.{ArrayBuffer, HashMap, HashSet, ListBuffer, FlatHashTable,DoubleLinkedList}
 import scala.reflect.Manifest
 import scala.util.Random
-import scala.Math
+import scala.math
 import scala.util.Sorting
 
 // Variables for dealing with spans of sequences

@@ -66,12 +66,12 @@ protected[er] def getGetterClass(c:Class[_]) : Class[_] = {
   val debug = false
   if (debug) println("getGetterClass "+c)
   // First check this class to see if it specifies the GetterClass
-  val classes = c.getDeclaredClasses()
-  val index = if (classes == null) -1 else classes.findIndexOf(c=>c.getName.endsWith("$GetterClass"))
+  val classes = c.getDeclaredClasses
+  val indexOption = if (classes == null) Option.empty else classes.find(x => x.getName.endsWith("$GetterClass"))
   //if (debug) println("  $GetterClass index="+index+"  classes "+classes.toList)
-  if (index >= 0) {
-    if (debug) println("getGetterClass   returning "+classes(index).getSuperclass)
-    return classes(index).getSuperclass
+  if (indexOption.isDefined) {
+    if (debug) println("getGetterClass   returning "+indexOption.get.getSuperclass)
+    return indexOption.get.getSuperclass
   }
   // Next check the superclass and interfaces/traits; choose the most specific (subclass of) Domain
   val candidateGetterClasses = new ListBuffer[Class[_]]

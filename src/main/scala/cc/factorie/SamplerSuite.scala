@@ -44,39 +44,3 @@ class GenericSampler[C](val sampler:Sampler[C])(implicit mc:Manifest[C]) extends
       null
   def process1(context:C) = sampler.process1(context)
 }
-
-/** A collection of samplers that might play beautiful music together.  
-    Can you call this.process passing AnyRef, and the suite will offer each sampler (in order) the opportunity to handle this context.
-    The first sampler in the suite to accept it, gets it.  
-    It is envisioned that the individual samplers in the suite may send variables back to the suite or coordinate among the suite. 
-    @author Andrew McCallum
-*/
-// TODO !! Remove this.
-@deprecated
-class SamplerSuite extends ArrayBuffer[GenericSampler[_]] with Sampler[AnyRef] with cc.factorie.util.Trackable {
-  /*def this() = this(Nil)
-  def this(ss:Sampler[_]*) = this(ss)
-  this ++= ss*/
-  
-  def process1(context:AnyRef) : DiffList = {
-    val samplers = this.iterator
-    while (samplers.hasNext) {
-      //|**("SamplerSuite")
-      val sampler = samplers.next
-      //println("SamplerSuite context "+context+" sampler "+sampler.sampler)
-      val d:DiffList = sampler.process0(context)
-      //**|
-      if (d != null) {
-        //println("SamplerSuite sampler "+sampler.sampler+" diff "+d)
-        return d
-      }
-    }
-    return null
-  }
-  
-  override def noDiffList: this.type = {
-    this.foreach(_.sampler.noDiffList)
-    super.noDiffList
-  }
-  
-}

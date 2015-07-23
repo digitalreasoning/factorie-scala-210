@@ -2,13 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <properties>
-    <scala.version>2.9.1</scala.version>
+    <scala.version>2.10.4</scala.version>
   </properties>
 
   <name>Factorie</name>
   <artifactId>factorie</artifactId>
   <groupId>cc.factorie</groupId>
-  <version>0.10.2</version>
+  <version>0.10.2-scala-2.10</version>
   <inceptionYear>2009</inceptionYear>
 
   <url>http://factorie.googlecode.com</url>
@@ -61,8 +61,8 @@
 
     <dependency>
       <groupId>org.scalatest</groupId>
-      <artifactId>scalatest_${scala.version}</artifactId>
-      <version>1.7.1</version>
+      <artifactId>scalatest_2.10</artifactId>
+      <version>1.9.1</version>
       <scope>test</scope>
     </dependency>
 

@@ -21,7 +21,7 @@ object LDA3 {
   object ZSeqDomain extends DiscreteSeqDomain { def elementDomain = ZDomain }
   class Zs(len:Int) extends DiscreteSeqVariable(len) { 
     def domain = ZSeqDomain
-    def words: Words = model.childFactors(this).first.asInstanceOf[PlatedDiscreteMixture.Factor]._1.asInstanceOf[Words]
+    def words: Words = model.childFactors(this).head.asInstanceOf[PlatedDiscreteMixture.Factor]._1.asInstanceOf[Words]
   }
   object WordSeqDomain extends CategoricalSeqDomain[String]
   val WordDomain = WordSeqDomain.elementDomain
